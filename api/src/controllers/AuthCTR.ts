@@ -130,10 +130,15 @@ class AuthClass {
 
     Profile: express.Handler = async (req, res, next) => {
         try {
+            const { id, type, first, last, email, 
+                created_at, updated_at } = req.user as IData;
             res.json({
                 success: true,
                 message: "The User Profile!",
-                data: req.user
+                data: { 
+                    id, type, first, last, 
+                    email, created_at, updated_at
+                }
             });
         } catch (error) {
             res
