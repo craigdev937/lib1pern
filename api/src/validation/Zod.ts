@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { array, string, z } from "zod";
 
 export const USchema = z.object({
     first: z.string().trim().min(2).max(120),
@@ -26,31 +26,20 @@ export const LSchema = z.object({
 export type LType = z.infer<typeof LSchema>;
 
 export const BSchema = z.object({
-    id: z.number(),
-    barcode: z.string(),
-    cover_url: z.string(),
-    title: z.string(),
-    description: z.string(),
-    publication_date: z.date(),
-    publisher: z.string(),
-    pages: z.number(),
-    genre: z.string(),
-    authors: z.array(z.string()),
-    subjects: z.array(z.string()),
-    created_at: z.string(),
-    updated_at: z.string()
-});
-
-// For Create/Update Requests 
-// Without ID and Timestamps
-export const BCreateSchema = BSchema.omit({
-    id: true,
-    created_at: true,
-    updated_at: true
+    barcode: z.number(),
+    cover_url: z.string().trim(),
+    title: z.string().trim(),
+    authors: z.array(z.string().trim()),
+    description: z.string().trim(),
+    subjects: z.array(z.string().trim()),
+    publication_date: z.string().trim(),
+    publisher: z.string().trim(),
+    pages: z.number().int().positive(),
+    genre: z.string()
 });
 
 export type BType = z.infer<typeof BSchema>;
-export type BCreateType = z.infer<typeof BCreateSchema>;
+
 
 
 
