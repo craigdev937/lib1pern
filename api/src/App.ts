@@ -6,6 +6,7 @@ import cookieParser from "cookie-parser";
 import { ERR } from "./middleware/midError.js";
 import { authRt } from "./routes/AuthRT.js";
 import { userRt } from "./routes/UserRT.js";
+import { bookRt } from "./routes/BookRT.js";
 
 export const APP: express.Application = express();
 APP.use(helmet());
@@ -31,6 +32,7 @@ APP.use(cookieParser());
 APP.use(logger("dev"));
 APP.use("/api", authRt);
 APP.use("/api", userRt);
+APP.use("/api", bookRt);
 APP.use(ERR.notFound);
 APP.use(ERR.errHandler);
 

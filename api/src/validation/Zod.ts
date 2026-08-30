@@ -25,8 +25,32 @@ export const LSchema = z.object({
 
 export type LType = z.infer<typeof LSchema>;
 
+export const BSchema = z.object({
+    id: z.number(),
+    barcode: z.string(),
+    cover_url: z.string(),
+    title: z.string(),
+    description: z.string(),
+    publication_date: z.date(),
+    publisher: z.string(),
+    pages: z.number(),
+    genre: z.string(),
+    authors: z.array(z.string()),
+    subjects: z.array(z.string()),
+    created_at: z.string(),
+    updated_at: z.string()
+});
 
+// For Create/Update Requests 
+// Without ID and Timestamps
+export const BCreateSchema = BSchema.omit({
+    id: true,
+    created_at: true,
+    updated_at: true
+});
 
+export type BType = z.infer<typeof BSchema>;
+export type BCreateType = z.infer<typeof BCreateSchema>;
 
 
 
