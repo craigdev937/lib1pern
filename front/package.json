@@ -1,0 +1,41 @@
+{
+  "name": "front",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.tsx",
+  "type": "module",
+  "scripts": {
+    "test": "rstest",
+    "test:watch": "rstest --watch",
+    "dev": "rsbuild dev",
+    "build": "rsbuild build",
+    "preview": "rsbuild preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.12.0",
+    "lucide-react": "^1.37.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-redux": "^9.3.0",
+    "react-router": "^8.3.1"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^2.2.1",
+    "@rsbuild/plugin-react": "^2.1.0",
+    "@rstest/core": "^0.11.10",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^26.4.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "jsdom": "^30.0.1",
+    "typescript": "^7.0.2"
+  }
+}
+
+
+

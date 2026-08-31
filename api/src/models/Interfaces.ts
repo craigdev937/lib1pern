@@ -39,6 +39,10 @@ export interface IBook {
     updated_at: string
 };
 
+export interface ILibCard {
+    user: string
+};
+
 
 
 

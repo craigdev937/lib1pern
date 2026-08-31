@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "moduleResolution": "Bundler",
+        "strict": true,
+        "jsx": "react-jsx",
+        "noEmit": true,
+        "verbatimModuleSyntax": true,
+        "forceConsistentCasingInFileNames": true,
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "isolatedModules": true,
+        "resolveJsonModule": true,
+        "module": "ESNext",
+        "target": "ESnext",
+        "lib": ["DOM", "DOM.Iterable", "ES2025"],
+        "paths": {"@public/*": ["./public/*"]},
+        "types": ["@rsbuild/core/types"]
+    },
+    "exclude": ["node_modules", "dist", "__tests__"],
+    "include": ["src"]
+}
+
+
+
