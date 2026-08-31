@@ -121,6 +121,32 @@ class BookClass {
             return next(error);
         }
     };
+
+    Delete: express.Handler = async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            const QRY = "DELETE FROM books WHERE id = $1";
+            const values = [id];
+            const deleteBook = await dBase.query<IBook>(QRY, values);
+            return res
+                .status(201)
+                .json({
+                    success: true,
+                    message: "The Book was Deleted!",
+                    data: deleteBook.rows[0]
+                });
+        } catch (error) {
+            res
+                .status(res.statusCode)
+                .json({
+                    success: false,
+                    message: "Error deleting the Book",
+                    error: error instanceof Error ?
+                        error.message : "Unknown Error1"
+                });
+            return next(error);
+        }
+    };
 };
 
 export const BOOK: BookClass = new BookClass();

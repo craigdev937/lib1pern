@@ -26,16 +26,16 @@ export const LSchema = z.object({
 export type LType = z.infer<typeof LSchema>;
 
 export const BSchema = z.object({
-    barcode: z.number(),
+    barcode: z.number().min(10),
     cover_url: z.string().trim(),
     title: z.string().trim(),
     authors: z.array(z.string().trim()),
     description: z.string().trim(),
     subjects: z.array(z.string().trim()),
-    publication_date: z.string().trim(),
+    publication_date: z.coerce.date(),
     publisher: z.string().trim(),
     pages: z.number().int().positive(),
-    genre: z.string()
+    genre: z.string().trim()
 });
 
 export type BType = z.infer<typeof BSchema>;

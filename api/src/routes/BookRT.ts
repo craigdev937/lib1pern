@@ -7,11 +7,7 @@ export const bookRt: express.Router = express.Router();
     bookRt.get("/books", BOOK.FetchAll);
     bookRt.get("/books/:id", BOOK.GetOne);
     bookRt.put("/books/:id", BOOK.Update);
-    
-    
-    
-    
-    // bookRt.delete("/books/:id", BOOK.Delete);
+    bookRt.delete("/books/:id", BOOK.Delete);
 
 
 
