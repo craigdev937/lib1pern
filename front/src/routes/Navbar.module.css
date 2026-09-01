@@ -9,7 +9,8 @@ header.nav__header {
     align-items: center;
     height: 5.625rem;
     font-size: 1.2rem;
-    background: var(--grey1);
+    background: var(--bg-main);
+    color: var(--text-main);
 }
 
 .nav__logo {
@@ -46,7 +47,7 @@ header.nav__header {
 }
 
 .nav__links {
-    color: var(--black);
+    color: var(--text-main);
     text-decoration: none;
     padding: 0.5rem 1rem;
 }
@@ -57,6 +58,33 @@ header.nav__header {
     border-radius: 0.25rem;
     transition: all 0.5s ease-out;
 }
+
+/* THEME TOGGLE */
+.nav__theme {
+    display: grid;
+    place-items: center;
+    margin-left: auto;
+    margin-right: 1rem;
+    padding: 0.6rem;
+    border: 1px solid var(--grey2);
+    background: var(--grey1);
+    border-radius: 100%;
+    color: var(--black);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav__theme:hover {
+    background: var(--yellow);
+    color: var(--black);
+    transform: rotate(20deg);
+}
+
+.nav__icon {
+    height: 1.8rem;
+    width: 1.8rem;
+}
+
 
 /* NAV MENU BUTTON */
 .nav__button {
@@ -79,7 +107,7 @@ header.nav__header {
     position: absolute;
     width: 70%;
     height: 0.438rem;
-    background: var(--black);
+    background: var(--text-main);
     transition: all 0.5s ease-in-out;
 }
 
@@ -159,7 +187,7 @@ header.nav__header {
     border: 0.125rem solid var(--black);
     border-radius: 999px;
     background: var(--turquoise);
-    color: var(--black);
+    color: var(--text-main);
     transition: box-shadow 0.2s ease, background-color 0.2s ease;
 }
 
@@ -172,12 +200,12 @@ header.nav__header {
     font-size: 1.125rem;
     border: none;
     background: transparent;
-    color: var(--black);
+    color: var(--text-main);
     outline: none;
 }
 
 .search input::placeholder {
-    color: var(--black);
+    color: var(--text-main);
     opacity: 0.8;
 }
 
@@ -209,7 +237,7 @@ header.nav__header {
 }
 
 .search button:focus-visible {
-    outline: 0.125rem solid var(--black);
+    outline: 0.125rem solid var(--text-main);
     outline-offset: -0.125rem;
 }
 
@@ -233,7 +261,7 @@ header.nav__header {
         display: flex;
         flex-direction: column;
         width: 100%;
-        color: var(--black);
+        color: var(--text-main);
         position: absolute;
         top: 5.625rem;
         left: -100%;
@@ -242,7 +270,7 @@ header.nav__header {
     }
 
     .nav__menu.active {
-        background: var(--grey1);
+        background: var(--bg-main);
         left: 0;
         opacity: 1;
         z-index: 1;
@@ -250,7 +278,7 @@ header.nav__header {
     }
 
     .nav__links {
-        color: var(--black);
+        color: var(--text-main);
         text-align: center;
         padding: 1.3rem;
         width: 100%;

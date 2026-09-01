@@ -1,11 +1,16 @@
 import React from "react";
 import styles from "./Navbar.module.css";
 import { Link, Outlet } from "react-router";
+import { Sun, Moon } from "lucide-react";
 import { Search } from "lucide-react";
+import { UAS, UAD } from "../global/Hooks";
+import { toggleTheme } from "../global/ThemeSlice";
 import LOGO from "@public/Library1.png";
 
 export const Navbar = () => {
     const [open, setOpen] = React.useState(false);
+    const dispatch = UAD();
+    const mode = UAS((state) => state.theme.mode);
     const handleClick = () => setOpen(!open);
     const closemenu = () => setOpen(false);
 
@@ -23,6 +28,27 @@ export const Navbar = () => {
                             className={styles.nav__img} 
                         />
                     </Link>
+
+                    {/* THEME TOGGLE */}
+                    <button
+                        className={styles.nav__theme}
+                        type="button"
+                        aria-label={mode === "dark"
+                            ? "Switch to Light Mode"
+                            : "Switch to Dark Mode"
+                        }
+                        title={mode === "dark"
+                            ? "Switch to Light Mode"
+                            : "Switch to Dark Mode"
+                        }
+                        onClick={() => dispatch(toggleTheme())}
+                    >
+                        {mode === "dark" ? (
+                            <Sun className={styles.nav__icon} />
+                        ) : (
+                            <Moon className={styles.nav__icon} />
+                        )}
+                    </button>
 
                     {/* NAV MENU BUTTON */}
                     <button
