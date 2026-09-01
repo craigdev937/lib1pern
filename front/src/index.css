@@ -1,5 +1,64 @@
+:root {
+    /* Lightness (L), Chroma (C), Hue (H) */
+    --white: oklch(100% 0.00011 271.152);
+    --cream: oklch(91.401% 0.01423 17.017);
+    --red: oklch(62.793% 0.25768 29.223);   
+    --pink: oklch(65.59% 0.21181 354.287);
+    --gold: oklch(76.858% 0.1646 70.075);
+    --green: oklch(72.276% 0.19199 149.6);
+    --turquoise: oklch(71.485% 0.12578 215.256);
+    --blue: oklch(62.31% 0.1881 259.83);
+    --purple: oklch(58.541% 0.20415 277.126);
+    --grey1: oklch(63.653% 0.04176 285.137);
+    --grey2: oklch(45.761% 0.03403 284.964);
+    --grey3: oklch(22.473% 0.02712 284.003);
+    --dark: oklch(18.614% 0.01624 284.705);
+    --charcoal: oklch(24.287% 0.03039 283.906);
+    --black: oklch(0% 0 0);
+
+    --text-main: var(--white);
+    --text-muted: var(--grey1);
+    --bg-main: var(--dark);
+    --bg-surface: var(--blue);
+    --bg-muted: var(--purple);
+    --border-main: var(--blue);
+    --border-subtle: var(--purple);        
+
+    --gradient: linear-gradient(
+        135deg, #2563eb, #3b82f6, #60a5fa
+    );
+    --radius: 12px;
+    --radius-sm: 8px;
+}
+
+/* LIGHT MODE — overrides the dark defaults above.
+   Toggled by ThemeSlice via [data-theme] on <html>. */
+:root[data-theme="light"] {
+    --text-main: var(--dark);
+    --text-muted: var(--grey1);
+    --bg-main: var(--cream);
+    --bg-surface: var(--blue);
+    --bg-muted: var(--purple);
+    --border-main: var(--blue);
+    --border-subtle: var(--purple);
+}
+
+*, *::before, *::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background: deepskyblue;
+    font-family: "Segoe UI";
+    background: var(--bg-main);
+    color: var(--text-main);
+    overflow-x: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 

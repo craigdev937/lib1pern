@@ -1,0 +1,90 @@
+import React from "react";
+import styles from "./Navbar.module.css";
+import { Link, Outlet } from "react-router";
+import { Search } from "lucide-react";
+import LOGO from "@public/Library1.png";
+
+export const Navbar = () => {
+    const [open, setOpen] = React.useState(false);
+    const handleClick = () => setOpen(!open);
+    const closemenu = () => setOpen(false);
+
+    return (
+        <React.Fragment>
+            <header className={styles.nav__header}>
+                <nav className={styles.nav}>
+                    <Link
+                        to={"/"}
+                        className={styles.nav__logo}
+                    >
+                        <img 
+                            alt="Library"
+                            src={LOGO}
+                            className={styles.nav__img} 
+                        />
+                    </Link>
+
+                    {/* NAV MENU BUTTON */}
+                    <button
+                        className={styles.nav__button}
+                        type="button"
+                        aria-label="toggle"
+                        aria-expanded={open}
+                        onClick={handleClick}
+                    >
+                        <aside className={`
+                            ${styles.nav__burger}
+                            ${open ? styles.open : ""}
+                        `}>
+                            <span className={styles.nav__line} />
+                            <span className={styles.nav__line} />
+                            <span className={styles.nav__line} />
+                        </aside>
+                    </button>
+
+                    {/* SIDEBAR AND CONTAINER QUERIES */}
+                    <menu className={open ? 
+                        `${styles.nav__menu} ${styles.active}`
+                        : `${styles.nav__menu}`
+                    }>
+                        <li className={styles.nav__item}>
+                            <Link
+                                to={"/login"}
+                                className={styles.nav__links}
+                                onClick={closemenu}
+                            >
+                                {/* Login will launch a Modal */}
+                                Login
+                            </Link>
+                        </li>
+
+                        <li className={styles.nav__item}>
+                            <Link
+                                to={"/catalog"}
+                                className={styles.nav__links}
+                                onClick={closemenu}
+                            >
+                                Catalog
+                            </Link>
+                        </li>
+
+                        {/* SEARCH BOX */}
+                        <form className={styles.search}>
+                            <input 
+                                type="text" 
+                                name="q"
+                                placeholder="Search Catalog" 
+                                aria-label="Search"
+                            />
+                            <button type="submit"><Search /></button>
+                        </form>
+                    </menu>
+                </nav>
+            </header>
+            <Outlet />
+        </React.Fragment>
+    );
+};
+
+
+
