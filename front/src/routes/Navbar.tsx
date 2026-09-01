@@ -39,6 +39,9 @@ export const Navbar = () => {
                             <span className={styles.nav__line} />
                             <span className={styles.nav__line} />
                             <span className={styles.nav__line} />
+                            <span className={styles.nav__line} />
+                            <span className={styles.nav__line} />
+                            <span className={styles.nav__line} />
                         </aside>
                     </button>
 
@@ -73,10 +76,15 @@ export const Navbar = () => {
                             <input 
                                 type="text" 
                                 name="q"
-                                placeholder="Search Catalog" 
+                                placeholder="Search" 
                                 aria-label="Search"
                             />
-                            <button type="submit"><Search /></button>
+                            <button 
+                                type="submit" 
+                                aria-label="Submit catalog search"
+                            >
+                                <Search aria-hidden="true" />
+                            </button>
                         </form>
                     </menu>
                 </nav>
