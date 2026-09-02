@@ -1,0 +1,44 @@
+.spin__container {
+    display: grid;
+    place-items: center;
+    width: 100%;
+    height: 80vh;
+}
+
+.spinner {
+    position: relative;
+    width: 7.5rem;
+    height: 7.5rem;
+    font-size: 1.5rem;
+    color: var(--turquoise);
+    letter-spacing: 0.125rem;
+    display: grid;
+    place-items: center;
+}
+
+.spinner::after {
+    content: "";
+    position: absolute;
+    top: -5rem;
+    left: -5rem;
+    right: -5rem;
+    bottom: -5rem;
+    border-radius: 50%;
+    border-top: 0.85rem solid rgba(255, 255, 255, .4);
+    border-right: 0.85rem solid rgba(255, 255, 255, .4);
+    border-bottom: 0.85rem solid rgba(255, 255, 255, .4);
+    border-left: 0.85rem solid var(--turquoise);
+    transform: translateZ(0);
+    animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+

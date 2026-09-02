@@ -3,9 +3,14 @@
 
 Generate a complete SQL script to populate the books table in a PostgreSQL database based on the schema above.
 
--  Create 50 books.
--  For each book, insert realistic data.  
--  The cover field will be a link to an image of a book on the web that's real or fictional.
+-  Create book entries based on the authors: Jeph Loeb, Stephenie Meyer, Gail Simone, Rick Riordan, Suzanne Collins, Toni Morrison, Brandon Sanderson, Greg Rucka, and Ta-Nehisi Coates.
+-  The cover_url field will be a link to the actual image of the book's cover.  For example:  
+
+author="Rick Riordan", 
+title="The Lightning Thief"
+cover_url="https://cdn.rickriordan.com/wp-content/uploads/2016/03/11223943/1368051472.png"
+
+
 
 {
 	"barcode": 9781368013581,
