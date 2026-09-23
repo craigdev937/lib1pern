@@ -31,7 +31,10 @@ export const Home = () => {
                             className={classes.book}
                         >
                             <Link to={`/book/${book.id}`}>
-                                <img src={book.cover_url} alt={book.title} />
+                                <img 
+                                    src={book.cover_url} 
+                                    alt={book.title} 
+                                />
                             </Link>
                         </aside>
                     ))}
