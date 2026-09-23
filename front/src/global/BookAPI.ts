@@ -1,6 +1,6 @@
 import { createApi, 
     fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import type { IBData, IBook } from "../models/interfaces";
+import type { IBData, IBookData } from "../models/interfaces";
 const URL = "http://localhost:9000/api";
 
 export const BookAPI = createApi({
@@ -18,6 +18,13 @@ export const BookAPI = createApi({
                     ({ type: "Books" as const, id })),
                 { type: "Books", id: "LIST" },
             ] : [{ type: "Books", id: "LIST" }]
+        }),
+        oneBook: builder.query<IBookData, number>({
+            query: (id) => ({
+                url: `/books/${id}`,
+                method: "GET",
+            }),
+            providesTags: [{type: "Books", id: 1}]
         }),
     })
 });

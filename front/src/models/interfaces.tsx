@@ -26,6 +26,12 @@ export interface IBData {
     data: IBook[]
 };
 
+export interface IBookData {
+    success: boolean,
+    message: string,
+    data: IBook
+};
+
 
 
 

@@ -7,6 +7,7 @@ import { Home } from "../pages/home/Home";
 import { Catalog } from "../pages/cat/Catalog";
 import { Profile } from "../pages/pro/Profile";
 import { Resource } from "../pages/res/Resource";
+import { Book } from "../pages/book/Book";
 
 const RouteList = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ const RouteList = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />
+            },
+            {
+                path: "/book/:id",
+                element: <Book />
             },
             {
                 path: "/catalog",

@@ -1,4 +1,4 @@
-import { array, string, z } from "zod";
+import { z } from "zod";
 
 export const USchema = z.object({
     first: z.string().trim().min(2).max(120),

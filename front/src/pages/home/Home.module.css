@@ -1,7 +1,33 @@
-.title {
-    background-color: turquoise;
-    color: ;
+.book__grid {
+    margin-top: 1rem;
+    width: 90%;
+    margin-inline: auto;
+    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(220px, 1fr)
+    );
 }
+
+.book {
+    padding: .7rem;
+    background-color: var(--white);
+    border-radius: 1rem;
+    place-items: center;
+}
+
+.book img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+}
+
+.book:hover {
+    scale: 1.05;
+}
+
 
 
 

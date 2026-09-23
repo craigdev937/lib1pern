@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./Home.module.css";
+import { Link } from "react-router";
 import { BookAPI } from "../../global/BookAPI";
 import { Spinner } from "../../components/spin/Spinner";
 
@@ -23,13 +24,16 @@ export const Home = () => {
             {isLoading ? (
                 <Spinner />
             ) : (
-                <main>
+                <main className={classes.book__grid}>
                     {data && data.data.map((book) => (
-                        <section key={book.id}>
-                            <h1>{book.title}</h1>
-                            <img src={book.cover_url} alt={book.title} />
-                            <p>{book.description}</p>
-                        </section>
+                        <aside 
+                            key={book.id} 
+                            className={classes.book}
+                        >
+                            <Link to={`/book/${book.id}`}>
+                                <img src={book.cover_url} alt={book.title} />
+                            </Link>
+                        </aside>
                     ))}
                 </main>
             )}
