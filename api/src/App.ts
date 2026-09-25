@@ -13,7 +13,12 @@ APP.use(helmet());
 
 // CORS Setup //
 APP.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Origin", "*");
+    const frontendOrigin = process.env.FRONTEND_ORIGIN ?? "http://localhost:6173";
+    res.vary("Origin");
+    if (req.headers.origin === frontendOrigin) {
+        res.setHeader("Access-Control-Allow-Origin", frontendOrigin);
+        res.setHeader("Access-Control-Allow-Credentials", "true");
+    }
     res.header("Access-Control-Allow-Headers", 
         "Origin, X-Requested-With, Content-Type, Accept, Authorization");
     if (req.method === "OPTIONS") {

@@ -8,7 +8,7 @@ import type { IData, IUser } from "../models/Interfaces.js";
 class AuthClass {
     Register: express.Handler = async (req, res, next) => {
         try {
-            const R = USchema.parse(req.body);
+            const R = USchema.parse({ ...req.body, type: "PATRON" });
             const eQRY = `SELECT email FROM users WHERE email=$1`;
             const userExists = await dBase.query<IData>(eQRY, [R.email]);
             if (userExists.rows.length > 0) {
@@ -18,10 +18,13 @@ class AuthClass {
             const bPass = await bcrypt.hash(R.password, 10);
             const QRY = `INSERT INTO users 
             (first, last, type, email, password) 
-            VALUES ($1, $2, $3, $4, $5) RETURNING *`;
+            VALUES ($1, $2, $3, $4, $5)
+            RETURNING id, first, last, type, email, created_at, updated_at`;
             const values = [R.first, R.last, R.type, R.email, bPass];
             const newUser = await dBase.query<IData>(QRY, values);
-            const newToken = signToken(newUser.rows[0]);
+            const { id, first, last, type, email, created_at, updated_at } = newUser.rows[0];
+            const publicUser = { id, first, last, type, email, created_at, updated_at };
+            const newToken = signToken({ id, email });
             res.cookie("token", newToken, {
                 httpOnly: true,
                 secure: false,  // change to true for production.
@@ -34,20 +37,19 @@ class AuthClass {
                     success: true,
                     message: "The User has Registered!",
                     data: {
-                        user: newUser.rows[0],
+                        user: publicUser,
                         token: newToken
                     }
                 });
         } catch (error) {
-            res
-                .status(res.statusCode)
+            return res
+                .status(500)
                 .json({
                     success: false,
                     message: "Error Registering a new user!",
                     error: error instanceof Error ?
                         error.message : "Unknown Error!"
                 });
-            return next(error);
         }
     };
 
@@ -70,7 +72,7 @@ class AuthClass {
                 return res.status(401)
                     .json({ msg: "Invalid Credentials!" });
             };
-            const logToken = signToken(uData);
+            const logToken = signToken({ id: uData.id, email: uData.email });
             res.cookie("token", logToken, {
                 httpOnly: true,
                 secure: false,  // Is true for Production!
@@ -89,15 +91,14 @@ class AuthClass {
                     token: logToken
                 });
         } catch (error) {
-            res
-                .status(res.statusCode)
+            return res
+                .status(500)
                 .json({
                     success: false,
-                    message: "Error loggin in the user!",
+                    message: "Unable to log in. Please try again.",
                     error: error instanceof Error ?
                         error.message : "Unknown Error!"
                 });
-            return next(error);
         }
     };
 
@@ -141,15 +142,14 @@ class AuthClass {
                 }
             });
         } catch (error) {
-            res
-                .status(res.statusCode)
+            return res
+                .status(500)
                 .json({
                     success: false,
                     message: "Error retreiving User Profile!",
                     error: error instanceof Error ?
                         error.message : "Unknown Error!"
                 });
-            next(error);
         }
     };
 };

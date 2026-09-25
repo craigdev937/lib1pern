@@ -5,10 +5,30 @@ import { Sun, Moon } from "lucide-react";
 import { Search } from "lucide-react";
 import { UAS, UAD } from "../global/Hooks";
 import { toggleTheme } from "../global/ThemeSlice";
+import { Login } from "../containers/log/Login";
+import { AuthAPI } from "../global/AuthAPI";
 import LOGO from "@public/Library1.png";
 
 export const Navbar = () => {
     const [open, setOpen] = React.useState(false);
+    const [login, setLogin] = React.useState(false);
+    const loginButton = React.useRef<HTMLButtonElement>(null);
+    const menuButton = React.useRef<HTMLButtonElement>(null);
+    const profileLink = React.useRef<HTMLAnchorElement>(null);
+    const { data: session, error: sessionError } = AuthAPI.useProfileQuery(undefined, {
+        refetchOnFocus: true,
+        refetchOnReconnect: true,
+    });
+    const sessionExpired = sessionError && "status" in sessionError && sessionError.status === 401;
+    const currentUser = sessionExpired ? undefined : session?.data;
+    const closeLogin = React.useCallback(() => {
+        setLogin(false);
+        requestAnimationFrame(() => {
+            const target = menuButton.current?.offsetParent
+                ? menuButton.current : loginButton.current ?? profileLink.current;
+            target?.focus();
+        });
+    }, []);
     const dispatch = UAD();
     const mode = UAS((state) => state.theme.mode);
     const handleClick = () => setOpen(!open);
@@ -52,6 +72,7 @@ export const Navbar = () => {
 
                     {/* NAV MENU BUTTON */}
                     <button
+                        ref={menuButton}
                         className={styles.nav__button}
                         type="button"
                         aria-label="toggle"
@@ -77,14 +98,23 @@ export const Navbar = () => {
                         : `${styles.nav__menu}`
                     }>
                         <li className={styles.nav__item}>
-                            <Link
-                                to={"/login"}
-                                className={styles.nav__links}
-                                onClick={closemenu}
-                            >
-                                {/* Login will launch a Modal */}
-                                Login
+                        {currentUser ? (
+                            <Link ref={profileLink} to={`/profile/${currentUser.id}`}
+                                className={styles.nav__links} onClick={closemenu}>
+                                My profile
                             </Link>
+                        ) : <button
+                            ref={loginButton}
+                            type="button"
+                            className={styles.nav__links}
+                            aria-haspopup="dialog"
+                            onClick={() => {
+                                closemenu();
+                                setLogin(true);
+                            }}
+                        >
+                            Login
+                        </button>}
                         </li>
 
                         <li className={styles.nav__item}>
@@ -116,6 +146,9 @@ export const Navbar = () => {
                 </nav>
             </header>
             <Outlet />
+            {login && (
+                <Login onClose={closeLogin} />
+            )}
         </React.Fragment>
     );
 };

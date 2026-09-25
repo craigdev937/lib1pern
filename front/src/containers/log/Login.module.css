@@ -1,0 +1,42 @@
+.login {
+    box-sizing: border-box;
+    width: min(28rem, calc(100vw - 2rem));
+    max-height: calc(100dvh - 2rem);
+    margin: auto;
+    padding: 2rem;
+    overflow-y: auto;
+    border: 1px solid var(--text-main);
+    border-radius: 1rem;
+    background: var(--bg-main);
+    color: var(--text-main);
+    box-shadow: 0 1.5rem 4rem rgb(0 0 0 / 30%);
+}
+
+.login::backdrop { background: rgb(0 0 0 / 60%); }
+.login h1 { margin: 0 2rem 0.5rem 0; font-size: 1.75rem; }
+.login p { margin: 0.5rem 0 1rem; }
+.fields { display: grid; gap: 0.5rem; border: 0; padding: 0; margin: 1.5rem 0 0; min-width: 0; }
+.fields label { font-weight: 600; }
+.fields input {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    margin-bottom: 0.5rem;
+    padding: 0.65rem;
+    border: 1px solid var(--text-main);
+    border-radius: 0.35rem;
+    font: inherit;
+    color: inherit;
+    background: var(--bg-main);
+}
+.login button { cursor: pointer; font: inherit; }
+.close { position: absolute; top: 0.75rem; right: 0.75rem; width: 2.5rem; height: 2.5rem; border: 0; border-radius: 50%; background: transparent; color: inherit; font-size: 1.75rem !important; }
+.submit { width: 100%; margin-top: 0.5rem; padding: 0.75rem; border: 1px solid var(--black); border-radius: 0.35rem; background: var(--yellow); color: var(--black); font-weight: 700 !important; }
+.switchMode { display: block; margin: 1rem auto 0; padding: 0.5rem; border: 0; background: transparent; color: inherit; text-decoration: underline; }
+.login :disabled { opacity: 0.65; cursor: wait; }
+.login :focus-visible { outline: 3px solid var(--turquoise); outline-offset: 3px; }
+.error { padding: 0.75rem; border: 1px solid currentColor; border-radius: 0.35rem; }
+
+@media (max-width: 30rem) {
+    .login { padding: 1.25rem; }
+}

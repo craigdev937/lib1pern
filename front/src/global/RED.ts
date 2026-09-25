@@ -10,7 +10,11 @@ export const RED = configureStore({
         [BookAPI.reducerPath]: BookAPI.reducer,
         [AuthAPI.reducerPath]: AuthAPI.reducer,
     },   //   gDM = getDefaultMiddleware.
-    middleware: (gDM) => gDM().concat(BookAPI.middleware),
+    middleware: (gDM) => gDM()
+        .concat(
+            BookAPI.middleware,
+            AuthAPI.middleware
+        ),
 });
 
 setupListeners(RED.dispatch);

@@ -34,6 +34,7 @@ export interface IBookData {
 
 export interface IUser {
     id: number,
+    type: string,
     first: string,
     last: string,
     email: string,
